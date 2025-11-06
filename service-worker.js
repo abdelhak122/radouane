@@ -3,7 +3,13 @@ const CACHE_NAME = 'radouane-analyzer-v1';
 const urlsToCache = [
   './',
   './index.html',
-  './index.tsx'
+  './index.js',
+  './manifest.json'
+  // NOTE: For full PWA offline support, you should also cache your icon files.
+  // Add the following lines once you have uploaded the icon files to your repository.
+  // './icon-192x192.png',
+  // './icon-512x512.png',
+  // './maskable-icon.png'
 ];
 
 // Install event: open cache and add core files
