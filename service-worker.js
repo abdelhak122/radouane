@@ -1,9 +1,9 @@
 const CACHE_NAME = 'radouane-analyzer-v1';
 // List of essential files to cache for offline functionality
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/index.tsx'
+  './',
+  './index.html',
+  './index.tsx'
 ];
 
 // Install event: open cache and add core files
