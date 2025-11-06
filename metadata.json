@@ -1,0 +1,5 @@
+{
+  "name": "Copy of Radouane - Product Ingredient Analyzer",
+  "description": "An application to analyze product ingredients by uploading an image. It provides a detailed breakdown of positive, negative, and questionable components based on scientific guidelines, presented in Arabic and English.",
+  "requestFramePermissions": []
+}
