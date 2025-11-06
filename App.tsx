@@ -1,13 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import Header from './components/Header';
-import ImageUpload from './components/ImageUpload';
-import LoadingSpinner from './components/LoadingSpinner';
-import AnalysisResultDisplay from './components/AnalysisResult';
-import ProductCategorySelector from './components/ProductCategorySelector';
-import ApiKeyModal from './components/ApiKeyModal';
-import { analyzeProduct } from './services/geminiService';
-import type { AnalysisResult } from './types';
+import Header from './components/Header.tsx';
+import ImageUpload from './components/ImageUpload.tsx';
+import LoadingSpinner from './components/LoadingSpinner.tsx';
+import AnalysisResultDisplay from './components/AnalysisResult.tsx';
+import ProductCategorySelector from './components/ProductCategorySelector.tsx';
+import ApiKeyModal from './components/ApiKeyModal.tsx';
+import { analyzeProduct } from './services/geminiService.ts';
+import type { AnalysisResult } from './types.ts';
 
 function App() {
   const { t, i18n } = useTranslation();

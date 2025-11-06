@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { AnalysisResult } from '../types';
-import ScoreBadge from './ScoreBadge';
-import ComponentCard from './ComponentCard';
+import type { AnalysisResult } from '../types.ts';
+import ScoreBadge from './ScoreBadge.tsx';
+import ComponentCard from './ComponentCard.tsx';
 
 interface AnalysisResultProps {
   result: AnalysisResult;

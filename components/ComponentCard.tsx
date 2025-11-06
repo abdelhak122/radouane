@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import type { Component } from '../types';
+import type { Component } from '../types.ts';
 
 interface ComponentCardProps {
   componentData: Component;

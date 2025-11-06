@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from "@google/genai";
-import type { AnalysisResult } from '../types';
+import type { AnalysisResult } from '../types.ts';
 
 const SYSTEM_PROMPT_AR = `
 Module-ID: الهوية والمبادئ التوجيهية (NCSD-V4.0 - Comprehensive Analysis)

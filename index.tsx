@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './i18n';
+import App from './App.tsx';
+import './i18n.ts';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
