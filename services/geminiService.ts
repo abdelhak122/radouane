@@ -214,7 +214,13 @@ export const analyzeProduct = async (imageFile: File, language: string, apiKey: 
       },
     });
 
-    const jsonString = response.text.trim();
+    const text = response.text;
+    if (!text) {
+      const errorMessage = language === 'ar' ? 'لم يتمكن الذكاء الاصطناعي من إنشاء استجابة نصية.' : 'The AI failed to generate a text response.';
+      throw new Error(errorMessage);
+    }
+    const jsonString = text.trim();
+    
     // Sanitize in case the model wraps the JSON in markdown (less likely with responseSchema but good practice).
     const sanitizedJsonString = jsonString.replace(/^```json\n/, '').replace(/\n```$/, '');
     

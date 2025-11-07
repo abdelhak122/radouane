@@ -134,7 +134,7 @@ const AnalysisResultDisplay: React.FC<AnalysisResultProps> = ({ result }) => {
       {positives.length > 0 && (
         <Section title={t('results.positive')} count={positives.length} color="bg-emerald-500">
           {positives.map((item, index) => <ComponentCard key={index} componentData={item} type="positive" />)}
-        </section>
+        </Section>
       )}
     </div>
   );
