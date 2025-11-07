@@ -1,4 +1,4 @@
-const CACHE_NAME = 'radouane-analyzer-v3'; // Incremented cache version
+const CACHE_NAME = 'radouane-analyzer-v4'; // Incremented cache version
 // List of essential files to cache for offline functionality
 const urlsToCache = [
   './',

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      // Dynamically set the base href for correct asset pathing in subdirectories like GitHub Pages.
+      // This must be the first script in the head.
+      (function() {
+        const path = window.location.pathname.split('/').slice(0, -1).join('/') + '/';
+        const base = document.createElement('base');
+        base.href = path;
+        document.head.prepend(base);
+      })();
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="./icon-192x192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,11 +81,9 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-gray-50 dark:bg-gray-900">
     <div id="root"></div>
     <script type="text/babel" data-type="module" src="./index.tsx"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+  </body>
 </html>
