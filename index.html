@@ -17,55 +17,21 @@
     <meta name="apple-mobile-web-app-title" content="Radouane">
     <link rel="apple-touch-icon" href="./icon-192x192.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Cairo', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
-
-    <style>
-      @keyframes focus-pulse {
-        0% {
-          transform: scale(0.95);
-          opacity: 1;
-        }
-        70% {
-          transform: scale(1.1);
-          opacity: 0.7;
-        }
-        100% {
-          transform: scale(1.1);
-          opacity: 0;
-        }
-      }
-      .animate-focus-pulse {
-        animation: focus-pulse 1s ease-out;
-        pointer-events: none; /* So it doesn't block clicks on the video */
-      }
-    </style>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
-    "vite": "https://aistudiocdn.com/vite@^7.2.2",
-    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "i18next-browser-languagedetector": "https://aistudiocdn.com/i18next-browser-languagedetector@^8.2.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
     "react-i18next": "https://aistudiocdn.com/react-i18next@^16.2.4",
-    "i18next": "https://aistudiocdn.com/i18next@^25.6.1"
+    "i18next": "https://aistudiocdn.com/i18next@^25.6.1",
+    "i18next-browser-languagedetector": "https://aistudiocdn.com/i18next-browser-languagedetector@^8.2.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0"
   }
 }
 </script>
