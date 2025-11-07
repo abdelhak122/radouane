@@ -191,8 +191,9 @@ const fileToGenerativePart = async (file: File) => {
   };
 };
 
-export const analyzeProduct = async (imageFile: File, language: string, apiKey: string): Promise<AnalysisResult> => {
-  const ai = new GoogleGenAI({ apiKey });
+// Fix: Removed apiKey parameter and initialize GoogleGenAI with process.env.API_KEY as per guidelines.
+export const analyzeProduct = async (imageFile: File, language: string): Promise<AnalysisResult> => {
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const imagePart = await fileToGenerativePart(imageFile);
   

@@ -4,7 +4,6 @@ import Header from './components/Header.tsx';
 import ImageUpload from './components/ImageUpload.tsx';
 import LoadingSpinner from './components/LoadingSpinner.tsx';
 import AnalysisResultDisplay from './components/AnalysisResult.tsx';
-import ApiKeyModal from './components/ApiKeyModal.tsx';
 import { analyzeProduct } from './services/geminiService.ts';
 import type { AnalysisResult } from './types.ts';
 
@@ -26,8 +25,6 @@ function App() {
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [apiKey, setApiKey] = useState<string | null>(null);
-  const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
   const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
@@ -43,13 +40,6 @@ function App() {
     };
   }, []);
 
-
-  useEffect(() => {
-    const storedApiKey = localStorage.getItem('gemini_api_key');
-    if (storedApiKey) {
-      setApiKey(storedApiKey);
-    }
-  }, []);
 
   useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -74,18 +64,14 @@ function App() {
       return;
     }
     
-    if (!apiKey) {
-      setError(t('error.apiKeyMissing'));
-      setIsApiKeyModalOpen(true);
-      return;
-    }
-
+    // Fix: Removed API key check and modal logic to comply with coding guidelines.
+    // The API key is now handled internally by the geminiService.
     setIsLoading(true);
     setError(null);
     setAnalysisResult(null);
 
     try {
-      const result = await analyzeProduct(imageFile, i18n.language, apiKey);
+      const result = await analyzeProduct(imageFile, i18n.language);
       setAnalysisResult(result);
     } catch (err) {
       if (err instanceof Error) {
@@ -96,14 +82,7 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  }, [imageFile, i18n.language, t, apiKey]);
-  
-  const handleSaveApiKey = (key: string) => {
-    localStorage.setItem('gemini_api_key', key);
-    setApiKey(key);
-    setIsApiKeyModalOpen(false);
-    setError(null);
-  };
+  }, [imageFile, i18n.language, t]);
   
   const handleInstallClick = () => {
     if (installPromptEvent) {
@@ -122,7 +101,6 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 dark:text-gray-100">
       <Header 
-        onSettingsClick={() => setIsApiKeyModalOpen(true)}
         onNewScanClick={() => handleImageSelect(null)}
         showNewScanButton={!!analysisResult}
       />
@@ -185,11 +163,7 @@ function App() {
         </div>
       </footer>
       
-      <ApiKeyModal
-        isOpen={isApiKeyModalOpen}
-        onClose={() => setIsApiKeyModalOpen(false)}
-        onSave={handleSaveApiKey}
-      />
+      {/* Fix: ApiKeyModal is no longer used and its related state and handlers have been removed. */}
     </div>
   );
 }

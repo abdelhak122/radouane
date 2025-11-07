@@ -41,7 +41,6 @@ const resources = {
         unexpected: "An unexpected error occurred.",
         selectImage: "Please select an image first.",
         analysisFailed: "Failed to analyze product: {{message}}",
-        apiKeyMissing: "Please set your Gemini API Key in the settings before analyzing.",
         cameraPermissionDenied: "Camera access was denied. Please enable camera permissions for this site in your browser settings to continue.",
         cameraNotFound: "No compatible camera was found on your device.",
         cameraAccessGeneric: "Could not access the camera due to an unexpected issue. Please try again."
@@ -76,15 +75,6 @@ const resources = {
           concernSource: "Source of Concern",
           ambiguous: "Ambiguous"
         }
-      },
-      apiKeyModal: {
-        title: "Set API Key",
-        description: "To use the analysis feature, you need to provide your own Google Gemini API key.",
-        getOneHere: "Get one here.",
-        inputLabel: "Your Gemini API Key",
-        save: "Save",
-        cancel: "Cancel",
-        close: "Close"
       },
       footer: {
         installApp: "Install App",
@@ -132,7 +122,6 @@ const resources = {
         unexpected: "حدث خطأ غير متوقع.",
         selectImage: "الرجاء اختيار صورة أولاً.",
         analysisFailed: "فشل تحليل المنتج: {{message}}",
-        apiKeyMissing: "الرجاء إدخال مفتاح Gemini API الخاص بك في الإعدادات قبل التحليل.",
         cameraPermissionDenied: "تم رفض الوصول إلى الكاميرا. للمتابعة، يرجى تمكين أذونات الكاميرا لهذا الموقع في إعدادات متصفحك.",
         cameraNotFound: "لم يتم العثور على كاميرا متوافقة على جهازك.",
         cameraAccessGeneric: "تعذر الوصول إلى الكاميرا بسبب مشكلة غير متوقعة. يرجى المحاولة مرة أخرى."
@@ -167,15 +156,6 @@ const resources = {
           concernSource: "مصدر قلق",
           ambiguous: "غامض"
         }
-      },
-      apiKeyModal: {
-        title: "إعداد مفتاح API",
-        description: "لاستخدام ميزة التحليل، تحتاج إلى تقديم مفتاح Google Gemini API الخاص بك.",
-        getOneHere: "احصل على واحد من هنا.",
-        inputLabel: "مفتاح Gemini API الخاص بك",
-        save: "حفظ",
-        cancel: "إلغاء",
-        close: "إغلاق"
       },
       footer: {
         installApp: "تثبيت التطبيق",
