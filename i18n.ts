@@ -10,26 +10,22 @@ const resources = {
       },
       header: {
         brand: "Radouane",
-        settings: "Settings"
+        settings: "Settings",
+        newScan: "New Scan"
       },
       hero: {
         title: "Inspect Your Products Intelligently",
         subtitle: "Take a picture of any product's ingredients, and let 'Radouane' reveal the scientific truth behind it."
       },
-      category: {
-        label: "Product Category",
-        options: {
-          food_beverage: "Food & Beverage",
-          cosmetics_skincare: "Cosmetics & Skincare",
-          cleaning_supplies: "Cleaning Supplies",
-          other: "Other"
-        }
-      },
       upload: {
-        dragAndDrop: "Drag and drop",
-        imageHere: " an image of the ingredients here, or ",
-        clickToSelect: "click to select",
-        formats: "PNG, JPG, WEBP",
+        title: "Provide an Image",
+        uploadFromDevice: "Upload from Device",
+        uploadFromDeviceDescription: "Choose a file from your gallery",
+        scanWithCamera: "Scan with Camera",
+        scanWithCameraDescription: "Use your camera to snap a photo",
+        dragAndDropNotice: "You can also drag and drop an image file here.",
+        dropHere: "Drop image to upload",
+        formats: "PNG, JPG, WEBP supported",
         previewAlt: "Product preview",
         analyzing: "Analyzing...",
         analyzeAgain: "Analyze Again",
@@ -41,12 +37,17 @@ const resources = {
       },
       error: {
         title: "Error!",
+        cameraTitle: "Camera Error",
         unexpected: "An unexpected error occurred.",
         selectImage: "Please select an image first.",
         analysisFailed: "Failed to analyze product: {{message}}",
-        apiKeyMissing: "Please set your Gemini API Key in the settings before analyzing."
+        apiKeyMissing: "Please set your Gemini API Key in the settings before analyzing.",
+        cameraPermissionDenied: "Camera access was denied. Please enable camera permissions for this site in your browser settings to continue.",
+        cameraNotFound: "No compatible camera was found on your device.",
+        cameraAccessGeneric: "Could not access the camera due to an unexpected issue. Please try again."
       },
       results: {
+        productCategory: "Product Category",
         analyzeAnother: "Analyze Another Product",
         productIdentification: "Product ID",
         ocrAccuracy: "OCR Accuracy",
@@ -86,6 +87,7 @@ const resources = {
         close: "Close"
       },
       footer: {
+        installApp: "Install App",
         disclaimer: "Disclaimer: This analysis is for informational purposes only and does not constitute medical advice. Always consult a qualified professional.",
         copyright: "© 2024 Radouane. All rights reserved."
       },
@@ -99,26 +101,22 @@ const resources = {
       },
       header: {
         brand: "رضوان",
-        settings: "الإعدادات"
+        settings: "الإعدادات",
+        newScan: "مسح جديد"
       },
       hero: {
         title: "افحص منتجاتك بذكاء",
         subtitle: "التقط صورة لمكونات أي منتج، ودع \"رضوان\" يكشف لك الحقيقة العلمية وراءه."
       },
-      category: {
-        label: "فئة المنتج",
-        options: {
-          food_beverage: "طعام ومشروبات",
-          cosmetics_skincare: "مستحضرات تجميل وعناية بالبشرة",
-          cleaning_supplies: "مواد تنظيف",
-          other: "أخرى"
-        }
-      },
       upload: {
-        dragAndDrop: "اسحب وأفلت",
-        imageHere: " صورة للمكونات هنا، أو ",
-        clickToSelect: "اضغط للاختيار",
-        formats: "PNG, JPG, WEBP",
+        title: "قدّم صورة المنتج",
+        uploadFromDevice: "رفع من الجهاز",
+        uploadFromDeviceDescription: "اختر ملفاً من معرض الصور",
+        scanWithCamera: "مسح بالكاميرا",
+        scanWithCameraDescription: "استخدم كاميرتك لالتقاط صورة",
+        dragAndDropNotice: "يمكنك أيضاً سحب وإفلات ملف الصورة هنا.",
+        dropHere: "أفلت الصورة للرفع",
+        formats: "يدعم PNG, JPG, WEBP",
         previewAlt: "معاينة المنتج",
         analyzing: "جاري التحليل...",
         analyzeAgain: "تحليل مرة أخرى",
@@ -130,12 +128,17 @@ const resources = {
       },
       error: {
         title: "خطأ!",
+        cameraTitle: "خطأ في الكاميرا",
         unexpected: "حدث خطأ غير متوقع.",
         selectImage: "الرجاء اختيار صورة أولاً.",
         analysisFailed: "فشل تحليل المنتج: {{message}}",
-        apiKeyMissing: "الرجاء إدخال مفتاح Gemini API الخاص بك في الإعدادات قبل التحليل."
+        apiKeyMissing: "الرجاء إدخال مفتاح Gemini API الخاص بك في الإعدادات قبل التحليل.",
+        cameraPermissionDenied: "تم رفض الوصول إلى الكاميرا. للمتابعة، يرجى تمكين أذونات الكاميرا لهذا الموقع في إعدادات متصفحك.",
+        cameraNotFound: "لم يتم العثور على كاميرا متوافقة على جهازك.",
+        cameraAccessGeneric: "تعذر الوصول إلى الكاميرا بسبب مشكلة غير متوقعة. يرجى المحاولة مرة أخرى."
       },
       results: {
+        productCategory: "فئة المنتج",
         analyzeAnother: "تحليل منتج آخر",
         productIdentification: "تعرف المنتج",
         ocrAccuracy: "دقة OCR",
@@ -175,6 +178,7 @@ const resources = {
         close: "إغلاق"
       },
       footer: {
+        installApp: "تثبيت التطبيق",
         disclaimer: "تنبيه: هذا التحليل هو لأغراض إعلامية فقط ولا يمثل نصيحة طبية. استشر دائمًا أخصائيًا مؤهلاً.",
         copyright: "© 2024 رضوان. جميع الحقوق محفوظة."
       },

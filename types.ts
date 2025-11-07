@@ -1,4 +1,5 @@
 
+
 export interface AnalysisConfidence {
   productIdentification: string;
   ocrAccuracy: string;
@@ -16,6 +17,7 @@ export interface Component {
 
 export interface AnalysisResult {
   productName: string;
+  productCategory: string;
   analysisConfidence: AnalysisConfidence;
   overallScore: number;
   verdict: string;

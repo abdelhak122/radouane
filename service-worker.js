@@ -1,4 +1,4 @@
-const CACHE_NAME = 'radouane-analyzer-v2'; // Incremented cache version
+const CACHE_NAME = 'radouane-analyzer-v3'; // Incremented cache version
 // List of essential files to cache for offline functionality
 const urlsToCache = [
   './',
@@ -13,15 +13,12 @@ const urlsToCache = [
   './components/ImageUpload.tsx',
   './components/LoadingSpinner.tsx',
   './components/AnalysisResult.tsx',
-  './components/ProductCategorySelector.tsx',
   './components/ApiKeyModal.tsx',
   './components/ScoreBadge.tsx',
   './components/ComponentCard.tsx',
-  // NOTE: For full PWA offline support, you should also cache your icon files.
-  // Add the following lines once you have uploaded the icon files to your repository.
-  // './icon-192x192.png',
-  // './icon-512x512.png',
-  // './maskable-icon.png'
+  './icon-192x192.png',
+  './icon-512x512.png',
+  './maskable-icon.png'
 ];
 
 // Delete old caches on activation
