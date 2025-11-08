@@ -1,22 +1,12 @@
-import { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from './components/Header.tsx';
 import ImageUpload from './components/ImageUpload.tsx';
 import LoadingSpinner from './components/LoadingSpinner.tsx';
 import AnalysisResultDisplay from './components/AnalysisResult.tsx';
+import ApiKeyModal from './components/ApiKeyModal.tsx';
 import { analyzeProduct } from './services/geminiService.ts';
 import type { AnalysisResult } from './types.ts';
-
-// Define the BeforeInstallPromptEvent interface
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: Array<string>;
-  readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed',
-    platform: string
-  }>;
-  prompt(): Promise<void>;
-}
-
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -25,21 +15,15 @@ function App() {
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [installPromptEvent, setInstallPromptEvent] = useState<BeforeInstallPromptEvent | null>(null);
+  const [apiKey, setApiKey] = useState<string | null>(null);
+  const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState(false);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (event: Event) => {
-      event.preventDefault();
-      setInstallPromptEvent(event as BeforeInstallPromptEvent);
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    };
+    const storedApiKey = localStorage.getItem('gemini_api_key');
+    if (storedApiKey) {
+      setApiKey(storedApiKey);
+    }
   }, []);
-
 
   useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -64,14 +48,18 @@ function App() {
       return;
     }
     
-    // Fix: Removed API key check and modal logic to comply with coding guidelines.
-    // The API key is now handled internally by the geminiService.
+    if (!apiKey) {
+      setError(t('error.apiKeyMissing'));
+      setIsApiKeyModalOpen(true);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setAnalysisResult(null);
 
     try {
-      const result = await analyzeProduct(imageFile, i18n.language);
+      const result = await analyzeProduct(imageFile, i18n.language, apiKey);
       setAnalysisResult(result);
     } catch (err) {
       if (err instanceof Error) {
@@ -82,25 +70,19 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  }, [imageFile, i18n.language, t]);
+  }, [imageFile, i18n.language, t, apiKey]);
   
-  const handleInstallClick = () => {
-    if (installPromptEvent) {
-      installPromptEvent.prompt();
-      installPromptEvent.userChoice.then(choiceResult => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        } else {
-          console.log('User dismissed the install prompt');
-        }
-        setInstallPromptEvent(null);
-      });
-    }
+  const handleSaveApiKey = (key: string) => {
+    localStorage.setItem('gemini_api_key', key);
+    setApiKey(key);
+    setIsApiKeyModalOpen(false);
+    setError(null);
   };
 
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900 dark:text-gray-100">
       <Header 
+        onSettingsClick={() => setIsApiKeyModalOpen(true)}
         onNewScanClick={() => handleImageSelect(null)}
         showNewScanButton={!!analysisResult}
       />
@@ -145,25 +127,16 @@ function App() {
 
       <footer className="w-full bg-white dark:bg-gray-800 shadow-inner mt-auto">
         <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-500 dark:text-gray-400">
-          {installPromptEvent && (
-            <div className="mb-4">
-              <button
-                onClick={handleInstallClick}
-                className="px-6 py-2 bg-emerald-600 text-white font-semibold rounded-full hover:bg-emerald-700 transition-colors text-base flex items-center space-x-2 rtl:space-x-reverse mx-auto"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                </svg>
-                <span>{t('footer.installApp')}</span>
-              </button>
-            </div>
-          )}
           <p>{t('footer.disclaimer')}</p>
           <p>{t('footer.copyright')}</p>
         </div>
       </footer>
       
-      {/* Fix: ApiKeyModal is no longer used and its related state and handlers have been removed. */}
+      <ApiKeyModal
+        isOpen={isApiKeyModalOpen}
+        onClose={() => setIsApiKeyModalOpen(false)}
+        onSave={handleSaveApiKey}
+      />
     </div>
   );
 }

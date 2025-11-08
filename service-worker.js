@@ -1,15 +1,26 @@
-const CACHE_NAME = 'radouane-analyzer-v5'; // Incremented cache version
+const CACHE_NAME = 'radouane-analyzer-v2'; // Incremented cache version
 // List of essential files to cache for offline functionality
 const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
-  // Note: Caching built assets (JS, CSS) requires a more advanced setup,
-  // typically with a build tool plugin that generates the service worker.
-  // This basic setup provides minimal offline support for the main page.
-  './icon-192x192.png',
-  './icon-512x512.png',
-  './maskable-icon.png'
+  './index.tsx',
+  './App.tsx',
+  './i18n.ts',
+  './types.ts',
+  './services/geminiService.ts',
+  './components/Header.tsx',
+  './components/ImageUpload.tsx',
+  './components/LoadingSpinner.tsx',
+  './components/AnalysisResult.tsx',
+  './components/ApiKeyModal.tsx',
+  './components/ScoreBadge.tsx',
+  './components/ComponentCard.tsx',
+  // NOTE: For full PWA offline support, you should also cache your icon files.
+  // Add the following lines once you have uploaded the icon files to your repository.
+  // './icon-192x192.png',
+  // './icon-512x512.png',
+  // './maskable-icon.png'
 ];
 
 // Delete old caches on activation
@@ -34,34 +45,18 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache');
-        // Use addAll with a catch to prevent install failure if one asset is missing
-        return cache.addAll(urlsToCache).catch(err => {
-          console.error('Failed to cache urls:', err);
-        });
+        return cache.addAll(urlsToCache);
       })
   );
 });
 
 // Fetch event: respond with cached content first, fall back to network
 self.addEventListener('fetch', event => {
-  // We only handle GET requests
-  if (event.request.method !== 'GET') {
-    return;
-  }
-  
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // If we found a match in the cache, return it.
-        if (response) {
-          return response;
-        }
-
-        // Otherwise, fetch from the network.
-        return fetch(event.request).then(networkResponse => {
-            // Optional: You could cache dynamic requests here if needed
-            return networkResponse;
-        });
+        // If we found a match in the cache, return it. Otherwise, fetch from the network.
+        return response || fetch(event.request);
       })
   );
 });

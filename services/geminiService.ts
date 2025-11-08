@@ -191,9 +191,8 @@ const fileToGenerativePart = async (file: File) => {
   };
 };
 
-// Fix: Removed apiKey parameter and initialize GoogleGenAI with process.env.API_KEY as per guidelines.
-export const analyzeProduct = async (imageFile: File, language: string): Promise<AnalysisResult> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+export const analyzeProduct = async (imageFile: File, language: string, apiKey: string): Promise<AnalysisResult> => {
+  const ai = new GoogleGenAI({ apiKey });
 
   const imagePart = await fileToGenerativePart(imageFile);
   
@@ -215,13 +214,7 @@ export const analyzeProduct = async (imageFile: File, language: string): Promise
       },
     });
 
-    const text = response.text;
-    if (!text) {
-      const errorMessage = language === 'ar' ? 'لم يتمكن الذكاء الاصطناعي من إنشاء استجابة نصية.' : 'The AI failed to generate a text response.';
-      throw new Error(errorMessage);
-    }
-    const jsonString = text.trim();
-    
+    const jsonString = response.text.trim();
     // Sanitize in case the model wraps the JSON in markdown (less likely with responseSchema but good practice).
     const sanitizedJsonString = jsonString.replace(/^```json\n/, '').replace(/\n```$/, '');
     

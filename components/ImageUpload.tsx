@@ -146,12 +146,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageSelect, onAnalyze, ima
       const track = videoTrackRef.current;
       const capabilities = track.getCapabilities();
       
-      // FIX: The 'focusMode' property is experimental and not in the default TS types.
-      // We cast to `any` to bypass type checking for this feature.
-      if ((capabilities as any).focusMode && (capabilities as any).focusMode.includes('single-shot')) {
-        track.applyConstraints({ focusMode: 'single-shot' } as any).catch(err => console.error("Could not apply single-shot focus", err));
-      } else if ((capabilities as any).focusMode && (capabilities as any).focusMode.includes('continuous')) {
-        track.applyConstraints({ focusMode: 'continuous' } as any).catch(err => console.error("Could not apply continuous focus", err));
+      if (capabilities.focusMode && capabilities.focusMode.includes('single-shot')) {
+        track.applyConstraints({ focusMode: 'single-shot' }).catch(err => console.error("Could not apply single-shot focus", err));
+      } else if (capabilities.focusMode && capabilities.focusMode.includes('continuous')) {
+        track.applyConstraints({ focusMode: 'continuous' }).catch(err => console.error("Could not apply continuous focus", err));
       }
     }
   };
